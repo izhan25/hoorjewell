@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="container">
+
+    <div style="width: 200px; height:170px;" class="mx-auto d-block">
+        <img src="~/Design/images/employees/@Session["u_Image"]" class="rounded mx-auto d-block img-responsive" />
+    </div>
+
+
+    <div class="text-center" style="opacity: 0.5; margin-top: 100px;">
+        <h2 class="display-5">Welcome <span class="text-info">@Session["u_Name"]</span></h2>
+        <h5>Good To See You Back</h5>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+﻿@model JewelleryShop.Models.ProductsTable
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Products</h2>
+
+<hr />
+
+
+<div class="row d-flex justify-content-center">
+    <div class="col-md-10">
+
+        <a href="@Url.Action("addProduct", "Admin")" class="mb-3">
+            <input type="button" value="Add New Product" class="btn btn-info btn-lg mb-3" />
+        </a>
+        <a href="@Url.Action("Categories", "Admin")" class="mb-3">
+            <input type="button" value="Categories" class="btn btn-info btn-lg mb-3" />
+        </a>
+        <!--Showing List of Products-->
+        <ul class="list-group">
+            
+            @foreach (var product in ViewData["Products"] as IEnumerable<JewelleryShop.Models.ProductsTable>)
+            {
+                <li class="list-group-item shadow p-3 mb-3 bg-white rounded">
+
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h3 class="text-capitalize">@product.productName</h3> <br />
+
+                            @foreach (var categ in ViewData["ProdCategs"] as IEnumerable<JewelleryShop.Models.ProductCategoryTable>)
+                            {
+                                if (categ.categoryId.Equals(product.categoryId))
+                                {
+                                    <p>Category: <span class="text-capitalize">@categ.categoryName</span></p>
+                                }
+                            }
+
+                            <p class="text-capitalize max-lines">@product.productDescription</p>
+                            <h5 class="">Price : <span class="">@product.productPrice</span></h5>
+                        </div>
+                        <div class="col-md-2">
+                            <img src="~/Design/images/products/@product.productImage" class="img-fluid mt-3" width="150" height="150"/>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="@Url.Action("addProduct", "Admin", new { id = product.productId})" class="btn btn-success ">Edit</a>
+                            <a href="@Url.Action("deleteProduct", "Admin", new { id = product.productId})" class="btn btn-danger " onclick="confirm('Are You Sure To Delete?', @product.productId, '/Admin/deleteProduct/')">Delete</a>
+                        </div>
+                    </div>
+
+                </li>
+            }
+            
+
+        </ul>
+  
+    </div>
+</div>

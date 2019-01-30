@@ -1,0 +1,30 @@
+﻿@model JewelleryShop.Models.ProductCategoryTable
+
+@{
+    ViewBag.Title = "addCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add New Category</h2>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-5">
+
+        @using (Html.BeginForm("addCategory", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @class = "shadow p-3 mb-3 bg-white rounded" }))
+        {
+            <div class="form-group">
+                <label for="categoryName">Enter Category Name :</label>
+                @Html.TextBoxFor(x => x.categoryName, new { @class = "form-control", id = "categoryName", placeholder = "e.g Necklace, Bracelet, Ring" })
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="@ViewBag.btnCategValue" name="btnAddCategory" id="btnAddCategory" class="@ViewBag.btnCategColor" />
+            </div>
+
+        }
+        @{Html.EndForm();}
+
+    </div>
+</div>

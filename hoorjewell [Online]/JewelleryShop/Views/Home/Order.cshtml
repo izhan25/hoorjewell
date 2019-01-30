@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_Layout_For_FE.cshtml";
+}
+
+
+<div class="container">
+
+    <div style="margin-top: 100px; margin-bottom: 100px;" class="d-flex justify-content-center">
+
+        @if(ViewData["error"] != null)
+        {
+            <p class="errorMsg">@ViewData["error"]</p>
+        }
+        else
+        {
+            
+            <img src="~/Design/FrontEnd/images/happyshop.png" style="display: block; margin-left: auto;margin-right: auto;width: 20%; height: 20%;"/>
+            
+            
+
+            <h3 class="mt-2 text-center text-success">Your Order Has Been Placed</h3>
+        }
+        
+    </div>
+
+</div>
+

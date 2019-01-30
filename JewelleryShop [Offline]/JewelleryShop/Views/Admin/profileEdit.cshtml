@@ -1,0 +1,93 @@
+﻿@model JewelleryShop.Models.EmployeeTable
+
+
+@{
+    ViewBag.Title = "profileEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row d-flex justify-content-center">
+
+    @if (ViewBag.img != null)
+    {
+        <div class="col-md-2 mt-5">
+            <img src="~/Design/images/employees/@ViewBag.img" class="img-thumbnail img-responsive" />
+            <input type="text" value="@ViewBag.img" class="text-center form-control" disabled />
+        </div>
+    }
+
+    <div class="col-md-5">
+        
+        <div class="well text-center font-weight-bold">
+            <label>Note : You Must Log In Again After Editing</label>
+        </div>
+
+        @using (Html.BeginForm("profileEdit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @class = "shadow p-3 mb-3 bg-white rounded" }))
+        {
+            if (ViewBag.img != null)
+            {
+                <div style="display: none;">
+                    @Html.TextBoxFor(x => x.EmployeeImage, new { @class = "form-control", id = "productImage" })
+                </div>
+            }
+
+            <div class="form-group" style="display: none;">
+                @Html.TextBoxFor(x => x.roleId, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+
+            <div class="form-group">
+                <label>User Name :</label>
+                @Html.TextBoxFor(x => x.EmployeeUserName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m=>m.EmployeeUserName, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label>Contact :</label>
+                @Html.TextBoxFor(x => x.EmployeeContact, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.EmployeeContact, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label>Select Image :</label>
+                <input type="file" name="EmployeeImage" id="EmployeeImage" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Password :</label>
+                @Html.PasswordFor(x => x.EmployeePwd, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.EmployeePwd, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label>re-Enter Password :</label>
+                @Html.PasswordFor(x => x.ConfirmPwd, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.ConfirmPwd, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Submit" name="btnSubmitProfile" id="btnSubmitProfile" class="btn btn-info" />
+                <a href="@Url.Action("myProfile", "Admin")" class="btn btn-primary">Back</a>
+            </div>
+
+            if (ViewBag.addEmpMsg != null)
+            {
+                <div class="form-group">
+                    <label class="text-danger">@ViewBag.addEmpMsg</label>
+                </div>
+
+            }
+        }
+        @{Html.EndForm();}
+
+        @if(ViewBag.error != null)
+        {
+            <label class="text-danger">@ViewBag.error</label>
+        }
+    </div>
+
+
+
+   
+</div>
+
+

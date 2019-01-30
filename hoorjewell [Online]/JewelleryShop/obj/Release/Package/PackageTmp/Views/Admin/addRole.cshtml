@@ -1,0 +1,32 @@
+﻿@model JewelleryShop.Models.RolesTable
+
+@{
+    ViewBag.Title = "addRole";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add New Role</h2>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-5">
+
+        @using (Html.BeginForm("addRole", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @class = "shadow p-3 mb-3 bg-white rounded" }))
+        {
+            <div class="form-group">
+                <label for="roleName">Enter Role Name :</label>
+                @Html.TextBoxFor(x => x.roleName, new { @class = "form-control", id = "roleName", placeholder = "e.g Marketting, Editor " })
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="@ViewBag.btnRoleValue" name="btnAddRole" id="btnAddRole" class="@ViewBag.btnRoleColor" />
+            </div>
+
+        }
+        @{Html.EndForm();}
+
+    </div>
+</div>
+
+

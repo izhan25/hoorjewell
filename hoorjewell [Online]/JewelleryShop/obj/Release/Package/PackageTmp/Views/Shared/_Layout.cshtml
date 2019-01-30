@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+    <link rel="apple-touch-icon" href="apple-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!--Bootstrap 4-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!--Jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!--Confirm Box-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+
+    <link rel="stylesheet" href="~/assets/css/normalize.css">
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="~/assets/css/flag-icon.min.css">
+    <link rel="stylesheet" href="~/assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="~/assets/scss/style.css">
+    <link href="~/assets/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!--My styles-->
+    <link rel="stylesheet" href="~/Design/FrontEnd/css/mystyles.css" type="text/css" media="all" />
+
+    <!--My Script-->
+    <script src="~/Design/js/confirm.js"></script>
+
+    
+
+</head>
+<body>
+    
+    <!-- Left Panel -->
+
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="./"><h3>Hoor Jewellers</h3></a>
+                <a class="navbar-brand hidden" href="./"><h3> H </h3></a>
+            </div>
+
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="@Url.Action("Index", "Admin")"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                    </li>
+                    <h3 class="menu-title">Hi! @Session["u_Name"]</h3><!-- /.menu-title -->
+                    
+                    @if (Convert.ToString(Session["u_Name"]) == "admin")
+                    {
+                        <li>
+                            <a href="@Url.Action("Roles", "Admin")">
+                                <i class="menu-icon fa fa-id-card-o"></i>
+                                Roles
+                            </a>
+                        </li>
+                    }
+                    
+
+                    <li>
+                        <a href="@Url.Action("Users", "Admin")">
+                            <i class="menu-icon fa fa-user"></i>
+                            Users
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="@Url.Action("Orders", "Admin")">
+                            <i class="menu-icon fa  fa-check-square-o"></i>
+                            Orders
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="@Url.Action("Products", "Admin")">
+                            <i class="menu-icon fa fa-archive"></i>
+                            Products
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </aside><!-- /#left-panel -->
+    <!-- Left Panel -->
+
+
+    <div id="right-panel" class="right-panel">
+        <!-- Header-->
+        <header id="header" class="header">
+
+            <div class="header-menu">
+
+                <div class="col-sm-7">
+                    <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+                    <div class="header-left">
+                        <button class="search-trigger"><i class="fa fa-search"></i></button>
+                        <div class="form-inline">
+                            <form class="search-form">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+                    
+                    <div class="user-area dropdown float-right">
+                        
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="user-avatar rounded-circle" src="~/Design/images/employees/@Session["u_Image"]" alt="User Avatar">
+                        </a>
+
+                        <div class="user-menu dropdown-menu shadow p-3 mb-5 bg-white rounded">
+                            <a class="nav-link" href="@Url.Action("myProfile", "Admin")"><i class="fa fa- user"></i>My Profile</a>
+                            <a class="nav-link" href="@Url.Action("logOut", "Admin")"><i class="fa fa-power -off"></i>Logout</a>
+                        </div>
+                    </div>
+                    <h5 class="float-right p-2 text-dark">@Session["u_Name"]</h5>
+
+                </div>
+            </div>
+
+        </header><!-- /header -->
+        <!-- Header-->
+
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li class="active">@ViewBag.breadcrum</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content mt-3">
+            @RenderBody()
+        </div>
+    </div>
+
+
+
+    <script src="~/assets/js/vendor/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+    <script src="~/assets/js/plugins.js"></script>
+    <script src="~/assets/js/main.js"></script>
+
+
+    @*<script src="~/assets/js/lib/chart-js/Chart.bundle.js"></script>*@
+    @*<script src="~/assets/js/dashboard.js"></script>*@
+    @*<script src="~/assets/js/widgets.js"></script>*@
+    <script src="~/assets/js/lib/vector-map/jquery.vmap.js"></script>
+    <script src="~/assets/js/lib/vector-map/jquery.vmap.min.js"></script>
+    <script src="~/assets/js/lib/vector-map/jquery.vmap.sampledata.js"></script>
+    <script src="~/assets/js/lib/vector-map/country/jquery.vmap.world.js"></script>
+    @*<script>
+        ( function ( $ ) {
+            "use strict";
+
+            jQuery( '#vmap' ).vectorMap( {
+                map: 'world_en',
+                backgroundColor: null,
+                color: '#ffffff',
+                hoverOpacity: 0.7,
+                selectedColor: '#1de9b6',
+                enableZoom: true,
+                showTooltip: true,
+                values: sample_data,
+                scaleColors: [ '#1de9b6', '#03a9f5' ],
+                normalizeFunction: 'polynomial'
+            } );
+        } )( jQuery );
+    </script>*@
+</body>
+</html>

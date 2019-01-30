@@ -1,0 +1,91 @@
+﻿@model JewelleryShop.Models.EmployeeTable
+
+@{
+    ViewBag.Title = "addEmployee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Employee</h2>
+
+<hr />
+
+<div class="row">
+
+    @if (ViewBag.img != null)
+    {
+        <div class="col-md-4">
+            <img src="~/Design/images/employees/@ViewBag.img" class="img-thumbnail img-responsive" />
+            <input type="text" value="@ViewBag.img" class="text-center form-control" disabled />
+        </div>
+    }
+
+
+    <div class="col-md-5">
+
+        @using (Html.BeginForm("addEmployee", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @class = "shadow p-3 mb-3 bg-white rounded" }))
+        {
+            if (ViewBag.img != null)
+            {
+                <div style="display: none;">
+                    @Html.TextBoxFor(x => x.EmployeeImage, new { @class = "form-control", id = "employeeImage" })
+                </div>
+            }
+
+            <div class="form-group">
+                <label for="employeeName">Enter Employee Name :</label>
+                @Html.TextBoxFor(x => x.EmployeeUserName, new { @class = "form-control", id = "employeeName", placeholder = "e.g izhan" })
+                @Html.ValidationMessageFor(m => m.EmployeeUserName,"", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label for="employeePwd">Enter Employee Password :</label>
+                @Html.TextBoxFor(x => x.EmployeePwd, new { @class = "form-control", id = "employeePwd", placeholder = "e.g pakistan" })
+                @Html.ValidationMessageFor(m => m.EmployeePwd, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label for="employeeContact">Enter Employee Contact :</label>
+                @Html.TextBoxFor(x => x.EmployeeContact, new { @class = "form-control", id = "employeeContact" })
+            </div>
+
+            List<SelectListItem> list = new List<SelectListItem>();
+
+            if (ViewData["Roles"] != null)
+            {
+                foreach (var role in ViewData["Roles"] as IEnumerable<JewelleryShop.Models.RolesTable>)
+                {
+                    if(role.roleName != "Admin")
+                    {
+                        list.Add(new SelectListItem { Text = role.roleName, Value = Convert.ToString(role.roleId) });
+                    }
+                }
+            }
+
+            <div class="form-group">
+                <label for="employeeRole">Select Employee Role :</label>
+                @Html.DropDownListFor(x => x.roleId, list, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.roleId, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label for="employeeImage">Select Employee Image :</label>
+                <input type="file" name="EmployeeImage" id="employeeImage" class="form-control" />
+                @Html.ValidationMessageFor(m => m.EmployeeImage, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="@ViewBag.btnEmpValue" name="btnAddEmployee" id="btnAddEmployee" class="@ViewBag.btnEmpColor" />
+            </div>
+
+            if (ViewBag.addEmployeeMsg != null)
+            {
+                <div class="form-group">
+                    <label class="text-danger">@ViewBag.addEmployeeMsg</label>
+                </div>
+
+            }
+        }
+        @{Html.EndForm();}
+
+    </div>
+</div>
