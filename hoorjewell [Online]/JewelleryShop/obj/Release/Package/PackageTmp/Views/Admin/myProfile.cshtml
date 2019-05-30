@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "myProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.FontSize = "font-size: 18px";
+}
+
+
+<h2>Profile</h2>
+<hr />
+
+<div class="row d-flex justify-content-center">
+
+    <!--Displaying Information-->
+    <div class="col-md-5">
+        <img src="~/Design/images/employees/@Session["u_Image"]" class="img-thumbnail mx-auto d-flex" />
+        <hr />
+        <h6 style="font-size: 21px; color: gray; margin-bottom: 13px;">Account Information: <a href="@Url.Action("profileEdit", "Admin", new { id = Session["u_Id"]})"><span class="fa fa-edit float-right"></span></a></h6>
+        <label class="text-dark" style="@ViewBag.FontSize"> <small>Name: </small> @Session["u_Name"]</label> <br />
+        <label class="text-dark" style="@ViewBag.FontSize"> <small>Contact: </small> @Session["u_Contact"]</label> <br />
+        <label class="text-dark" style="@ViewBag.FontSize"> <small>My Role: </small> @Session["u_Role"]</label> <br />
+    </div>
+
+</div>
+
+
+
+

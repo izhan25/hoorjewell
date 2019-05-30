@@ -1,0 +1,70 @@
+﻿@model JewelleryShop.Models.UsersTable
+
+@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/Shared/_Layout_For_FE.cshtml";
+}
+
+<!-- content-section-starts -->
+<div class="content">
+    <div class="container">
+        <div class="login-page">
+            <div class="dreamcrub">
+                <ul class="breadcrumbs">
+                    <li class="home">
+                        <a href="@Url.Action("Index", "Home")" title="Go to Home Page">Home</a>&nbsp;
+                        <span>&gt;</span>
+                    </li>
+                    <li class="women">
+                        Login
+                    </li>
+                </ul>
+                <ul class="previous">
+                    <li><a href="@Url.Action("Index", "Home")">Back to Previous Page</a></li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="account_grid">
+                <div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
+                    <h2>NEW CUSTOMERS</h2>
+                    <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+                    <a class="acount-btn" href="@Url.Action("SignUp", "Home")">Create an Account</a>
+                </div>
+                <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
+                    <h3>REGISTERED CUSTOMERS</h3>
+                    <p>If you have an account with us, please log in.</p>
+
+                    <form onsubmit=""></form>
+
+                    @using (Html.BeginForm("LogIn", "Home", FormMethod.Post))
+                    {
+                        <div>
+                            <span>User Name<label>*</label></span>
+                            @Html.TextBoxFor(x=>x.userName, new { @id="loginName" })
+                        </div>
+                        <div>
+                            <span>Password<label>*</label></span>
+                            @Html.PasswordFor(x=>x.userPassword, new { @id = "loginPwd" })
+                        </div>
+                        <div>
+                            <span id="LoginErrorMsg" class="errorMsg"></span>
+                            @if (ViewBag.logInMessage != null)
+                            {
+                            <h4 class="errorMsg">@ViewBag.logInMessage</h4>
+                            }
+                        </div>
+                        <a class="forgot" href="#">Forgot Your Password?</a>
+                        <input type="submit" name="btnLogInUser" value="Login">
+
+                        
+                    }
+                    @{ Html.EndForm(); }
+
+                    
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+</div>
+

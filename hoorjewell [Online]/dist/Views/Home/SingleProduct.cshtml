@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "SingleProduct";
+    Layout = "~/Views/Shared/_Layout_For_FE.cshtml";
+}
+
+<div class="container">
+    <div class="products-page">
+        <div class="products">
+            <div class="product-listy">
+                <h2>our Products</h2>
+                <ul class="product-list">
+
+                    @foreach (var category in ViewData["Categories"] as IEnumerable<JewelleryShop.Models.ProductCategoryTable>)
+                    {
+                        <li>
+                            <a href="@Url.Action("Products", "Home", new { id = category.categoryId })">
+                                @category.categoryName
+                            </a>
+                        </li>
+                    }
+
+                    <li><a href="@Url.Action("SignUp", "Home")">Register</a></li>
+                </ul>
+            </div>
+            <div class="latest-bis">
+                <img src="~/Design/FrontEnd/images/p5.jpg" class="img-responsive" alt="" />
+                <div class="offer">
+                    <p>40%</p>
+                    <small>Top Offer</small>
+                </div>
+            </div>
+            
+
+        </div>
+        <div class="new-product">
+            <div class="row">
+                <div class="col-md-5 zoom-grid">
+                    <div class="flexslider">
+                        <ul class="slides">
+
+                            @foreach (var product in ViewData["SelectedProduct"] as IEnumerable<JewelleryShop.Models.ProductsTable>)
+                            {
+                                <li data-thumb="~/Design/images/products/@product.productImage">
+                                    <div class="thumb-image"> <img src="~/Design/images/products/@product.productImage" data-imagezoom="true" class="img-responsive" alt="" /> </div>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-10 dress-info">
+
+                    @foreach (var product in ViewData["SelectedProduct"] as IEnumerable<JewelleryShop.Models.ProductsTable>)
+                    {
+                        <div class="dress-name">
+                            <h3>@product.productName</h3>
+                            <span>Rs. @product.productPrice</span>
+                            <div class="clearfix"></div>
+                            <p style="font-size: 18px;">@product.productDescription</p>
+                        </div>
+
+
+                        <div class="purchase">
+                            <a href="@Url.Action("addItem", "Home", new { id = product.productId })" class="btn btn-lg btn-success btn-block" style="text-decoration : none; color: white;">Add To Cart</a>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    }
+
+                    
+
+
+
+                    <script src="~/Design/FrontEnd/js/imagezoom.js"></script>
+                    <!-- FlexSlider -->
+                    <script defer src="~/Design/FrontEnd/js/jquery.flexslider.js"></script>
+                    <script>
+						// Can also be used with $(document).ready()
+						$(window).load(function() {
+						  $('.flexslider').flexslider({
+							animation: "slide",
+							controlNav: "thumbnails"
+						  });
+						});
+                    </script>
+                </div>
+            </div>
+           
+            
+
+
+            <div class="clearfix"></div>
+
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
